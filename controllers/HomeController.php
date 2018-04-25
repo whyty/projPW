@@ -24,7 +24,7 @@ class HomeController extends Controller
         $plotExampleName = $request->getParam('plot-example');
         if (!empty($plotExampleName)) {
             $plotExampleExecutableFile = $plotExampleName.'.pg';
-            $cmd = "cd ".__DIR__."/../public/plot-examples/ && chmod +x -R * && ./$plotExampleExecutableFile";
+            $cmd = "cd ".__DIR__."/../public/plot-examples/ && ./$plotExampleExecutableFile";
             exec($cmd);
             $result['image'] = "$plotExampleName.png";
         } else {
