@@ -28,13 +28,5 @@ $(document).ready(function(){
             }
         });
     });
-
-    $.ajax({
-        url: 'index.php/api/update/5',
-        method: 'post',
-        data: {name: 'flavius ilina', salary: 15000},
-    }).done(function (data) {
-        console.log(data);
-    });
 });
 
