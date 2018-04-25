@@ -1,0 +1,9 @@
+#!/usr/bin/gnuplot
+reset
+set terminal png
+set output '../plot-images/simple_plot_first.png'
+set title "Simple Plots First Example"
+set title  font ",20" norotate
+DEBUG_TERM_HTIC = 119
+DEBUG_TERM_VTIC = 119
+plot [-pi/2:pi] cos(x),-(sin(x) > sin(x+1) ? sin(x) : sin(x+1))

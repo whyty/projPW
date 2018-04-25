@@ -1,0 +1,35 @@
+body {
+    padding-top: 54px;
+}
+@media (min-width: 992px) {
+    body {
+        padding-top: 56px;
+    }
+}
+.panel-default {
+    margin-top: 20px;
+}
+
+.panel-default .form-horizontal > .form-group{
+    margin-top: 15px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.btn-default, .btn-default:hover{
+    color: #fff;
+    background-color: #71a373;
+    border-color: #71a373;
+}
+
+.hidden {
+    display: none;
+}
+
+.pull-right {
+    float: right !important;
+}
+
+.pull-left {
+    float: left !important;
+}

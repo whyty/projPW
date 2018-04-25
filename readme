@@ -1,0 +1,35 @@
+we need to install gnuplot command line for linux
+
+sudo apt-get update
+sudo apt-get install gnuplot
+
+we need to install composer from command line
+
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-composer-on-ubuntu-14-04
+it works also for 16.04
+
+now we need to install our project
+
+composer install
+
+and then give read,write, execute rights for scripts on folder public/plot-examples/
+
+chmod -R 777 public/plot-examples
+
+to run project for ploting use path
+http://localhost/<project_folder>/index.php
+
+
+to add a new example of gnuplot, you need to do
+
+- create gnuplot example as <example>.pg on public/plot-examples/ folder
+- add an option on select, from template public/template/plot.twig with value of <example>
+
+
+it hasn't htaccess yes.
+
+For api part you need to add create a database using sql file that you will find on database/employee.sql
+Not forgot to edit data from Model.php for db connection
+and for update route, use age, salary and name all the time
+
+For testing you will need to use postman chrome extension

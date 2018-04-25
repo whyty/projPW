@@ -1,0 +1,11 @@
+#!/usr/bin/gnuplot
+reset
+set terminal png
+set output '../plot-images/simple_plot_third.png'
+set key bmargin left horizontal Right noreverse enhanced autotitle box
+set samples 800, 800
+set title "Simple Plots Third Example" 
+set title  font ",20" norotate
+DEBUG_TERM_HTIC = 119
+DEBUG_TERM_VTIC = 119
+plot [-30:20] sin(x*20)*atan(x)
