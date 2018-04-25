@@ -71,9 +71,8 @@ class Employee extends Model
             $stmt->bindParam("age", $employee['age']);
             $stmt->bindParam("id", $id);
             $stmt->execute();
+		throw new \PDOException(print_r($result));
             $result = $stmt->debugDumpParams();
-            print_r($result);
-            die('iote ba');
             $db = null;
             return $employee;
         } catch(\PDOException $e) {
