@@ -74,7 +74,7 @@ class Employee extends Model
             $db = null;
             return $employee;
         } catch(\PDOException $e) {
-            ['error' => ['text' => $e->getMessage()]];
+            return ['error' => ['text' => $e->getMessage()]];
         }
     }
 
