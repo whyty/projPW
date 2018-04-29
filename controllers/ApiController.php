@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use \Models\Employee;
+use \Models\Gnuplot;
 
 class ApiController extends Controller
 {
@@ -12,12 +13,20 @@ class ApiController extends Controller
     public function __construct($container)
     {
         parent::__construct($container);
-        $this->model = new Employee();
+        $this->employeeModel = new Employee();
+        $this->gnuplotModel = new Gnuplot();
+    }
+
+    public function index ($request, $response, $args)
+    {
+        $employees = array_column($this->employeeModel->getEmployees(), 'id');
+        $examples = array_column($this->gnuplotModel->getExamples(), 'id');
+        return $this->container->view->render($response, "api.twig", ['employees' => $employees, 'examples' => $examples]);
     }
 
     public function getEmployees($request, $response, $args)
     {
-        $result = $this->model->getEmployees();
+        $result = $this->employeeModel->getEmployees();
         $body = $response->getBody();
         $body->write(json_encode($result));
 
@@ -32,7 +41,7 @@ class ApiController extends Controller
         if (empty($id)) {
             $result = ['error' => ['text' => 'Id is empty']];
         } else {
-            $result = $this->model->getEmployee($id);
+            $result = $this->employeeModel->getEmployee($id);
         }
         $body = $response->getBody();
         $body->write(json_encode($result));
@@ -46,7 +55,7 @@ class ApiController extends Controller
 
         $params = $request->getParams();
 
-        $result = $this->model->addEmployee($params);
+        $result = $this->employeeModel->addEmployee($params);
 
         $body = $response->getBody();
         $body->write(json_encode($result));
@@ -59,7 +68,7 @@ class ApiController extends Controller
     {
         $params = $request->getParams();
         $id = $request->getAttribute('id');
-        $result = $this->model->updateEmployee($params, $id);
+        $result = $this->employeeModel->updateEmployee($params, $id);
 
         $body = $response->getBody();
         $body->write(json_encode($result));
@@ -75,7 +84,31 @@ class ApiController extends Controller
         if (empty($id)) {
             $result = ['error' => ['text' => 'Id is empty']];
         } else {
-            $result = $this->model->deleteEmployee($id);
+            $result = $this->employeeModel->deleteEmployee($id);
+        }
+        $body = $response->getBody();
+        $body->write(json_encode($result));
+
+        return $response->withHeader('Content-Type', 'application/json')->withBody($body);
+    }
+
+    public function getExamples($request, $response, $args)
+    {
+        $result = $this->gnuplotModel->getExamples();
+        $body = $response->getBody();
+        $body->write(json_encode($result));
+
+        return $response->withHeader('Content-Type', 'application/json')->withBody($body);
+    }
+
+    public function getExample($request, $response, $args)
+    {
+        $id =  $request->getAttribute('id');
+        $result = [];
+        if (empty($id)) {
+            $result = ['error' => ['text' => 'Id is empty']];
+        } else {
+            $result = $this->gnuplotModel->getExample($id);
         }
         $body = $response->getBody();
         $body->write(json_encode($result));

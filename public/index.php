@@ -26,12 +26,15 @@ $container['errorHandler'] = function () use ($container) {
 
 $container['view'] = function() use ($container) {
     $view = new \Slim\Views\Twig(__DIR__ . '/templates', [
-        'cache' => false
+        'cache' => false,
+        'debug' => true,
     ]);
 
     $view->addExtension(new \Slim\Views\TwigExtension(
         $container->router, $container->request->getUri()
     ));
+
+    $view->addExtension(new Twig_Extension_Debug());
 
     $view->getEnvironment()->addGlobal('mode',$container->get("settings")["mode"]);
 

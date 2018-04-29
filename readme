@@ -33,3 +33,26 @@ Not forgot to edit data from Model.php for db connection
 and for update route, use age, salary and name all the time
 
 For testing you will need to use postman chrome extension
+
+
+/****************** Tema 4 ******************/
+
+//SQLite install
+sudo add-apt-repository ppa:jonathonf/backports
+
+sudo apt-get update && sudo apt-get install sqlite3
+
+install php extension for sqlite3
+
+sudo apt install php7.0-sqlite3
+
+//restart apache
+
+sudo service apache2 restart
+
+//install SQLite app (something like PhpMyAdmin)
+
+sudo apt-get install sqlitebrowser
+
+With sqlitebrowser you can edit your database tables, add, insert and delete entries;
+

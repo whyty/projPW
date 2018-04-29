@@ -1,0 +1,79 @@
+{% extends 'includes/template.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-default api">
+                <div class="form-group clearfix">
+                    <div class="col-md-3">
+                        <label class="col-md-12 control-label">API Examples</label>
+                    </div>
+                    <div class="col-md-12">
+                        <select name="request" class="form-control request">
+                            <option value="">Select Requests Examples</option>
+                            <option value="generic">Generic App</option>
+                            <option value="custom">Custom App</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group hidden" id="generic">
+                        <br>
+                        <div class="col-md-10 pull-left">
+                            <select name="generic_actions" id="generic-actions" class="form-control">
+                                <option value="">Select Action</option>
+                                <option value="examples">Get Examples</option>
+                                <option value="example">Get Example</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 pull-left">
+                            <select name="example_id" id="example-id" class="form-control hidden">
+                                <option value="">Select Id</option>
+                                {% if examples %}
+                                    {% for example in examples %}
+                                        <option value="{{ example }}">{{ example }}</option>
+                                    {% endfor %}
+                                {% endif %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group hidden" id="custom">
+                        <br>
+                        <div class="col-md-10 pull-left">
+                            <select name="custom_actions" id="custom-actions" class="form-control">
+                                <option value="">Select Action</option>
+                                <option value="employees">Get Employees</option>
+                                <option value="employee">Get Employee</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 pull-left">
+                            <select name="employee_id" id="employee-id" class="form-control hidden">
+                                <option value="">Select Id</option>
+                                {% if employees %}
+                                    {% for employee in employees %}
+                                        <option value="{{ employee }}">{{ employee }}</option>
+                                    {% endfor %}
+                                {% endif %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group btn-wrapper clearfix hidden">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-default pull-right">Get Data</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <div id="result" class="alert alert-success hidden"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row alert-wrapper">
+                <div class="col-md-12">
+                    <div class="alert" role="alert"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

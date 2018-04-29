@@ -31,7 +31,7 @@ class Employee extends Model
     {
         try {
             $db = $this->db_connection;
-            $sth = $db->prepare("SELECT * FROM employee WHERE id=$employeeId");
+            $sth = $db->prepare("SELECT * FROM employee WHERE id=:id");
             $sth->bindParam("id", $employeeId);
             $sth->execute();
             $todos = $sth->fetchObject();

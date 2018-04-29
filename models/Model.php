@@ -20,12 +20,21 @@ class Model {
 
 
     private function setDbConnection() {
-        $dbhost="127.0.0.1";
-        $dbuser="root";
-        $dbpass="1";
-        $dbname="project";
-        $dbh = new \PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
-        $dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-        return $dbh;
+        try {
+            //sql connection
+            /*$dbhost="127.0.0.1";
+            $dbuser="root";
+            $dbpass="1";
+            $dbname="project";
+            $dbh = new \PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);*/
+            $sqliteDbFile = __DIR__ . "/../database/project.db";
+            $dbh = new \PDO("sqlite:$sqliteDbFile");
+            $dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            return $dbh;
+        } catch (\PDOException $e) {
+            // handle the exception here
+            print $e->getMessage(); exit;
+        }
+
     }
 }

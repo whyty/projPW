@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use \Models\Gnuplot;
 
 class HomeController extends Controller
 {
@@ -14,7 +15,9 @@ class HomeController extends Controller
 
     public function index($request, $response, $args)
     {
-        return $this->container->view->render($response, "plot.twig");
+        $model = new Gnuplot();
+        $examples = $model->getExamples();
+        return $this->container->view->render($response, "plot.twig", ['examples' => $examples]);
     }
 
 
